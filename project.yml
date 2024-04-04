@@ -1,0 +1,63 @@
+name: Drevmass
+
+options:
+  # Language
+  developmentLanguage: ru
+  deploymentTarget: 
+    iOS: "15.0"
+  # Sort folders at top of file navigator
+  groupSortPosition: top
+  # Install pods after generation
+  postGenCommand: pod install 
+
+targets:
+  Drevmass:
+    type: application
+    platform: iOS
+    supportedDestinations: iOS
+    deploymentTarget: "15.0"
+    sources:
+      - Drevmass
+    info:
+      path: Drevmass/Info.plist
+      properties:
+        CFBundleDisplayName: "Древмасс"
+        CFBundleIconName: Assets.xcassets/AppIcon.appiconset
+        CFBundleShortVersionString: 1.0.0 # Version
+        CFBundleVersion: "1" # Build number
+        LSApplicationCategoryType: "public.app-category.medical"
+        ITSAppUsesNonExemptEncryption: false
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UIViewControllerBasedStatusBarAppearance: true
+        UIMainStoryboardFile: ""
+        UILaunchStoryboardName: "LaunchScreen.storyboard"
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+          UISceneConfigurations:
+            UIWindowSceneSessionRoleApplication:
+              - UISceneConfigurationName: Default Configuration
+                UISceneDelegateClassName: $(PRODUCT_MODULE_NAME).SceneDelegate
+        NSAppTransportSecurity:
+          # Allow http
+          NSAllowsArbitraryLoads: true
+        UIAppFonts: [] # <- Add custom fonts here
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: kz.mobydev.Drevmass
+      configs:
+        debug:
+          # Disable sandboxing. Required for CocoaPods
+          ENABLE_USER_SCRIPT_SANDBOXING: NO
+          # keep only iPhone destination
+          SUPPORTED_PLATFORMS: "iphoneos iphonesimulator"
+          SUPPORTS_MACCATALYST: NO
+          SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+          SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD: NO
+        release:
+          ENABLE_USER_SCRIPT_SANDBOXING: NO
+          SUPPORTED_PLATFORMS: "iphoneos iphonesimulator"
+          SUPPORTS_MACCATALYST: NO
+          SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+          SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD: NO
+
