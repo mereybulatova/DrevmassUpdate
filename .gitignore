@@ -1,6 +1,7 @@
 # System
 .DS_Store
 xcuserdata/
+*.xcodeproh
 # SPM
 .build/
 # CocoaPods
