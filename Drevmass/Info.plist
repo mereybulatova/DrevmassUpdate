@@ -32,7 +32,9 @@
 		<true/>
 	</dict>
 	<key>UIAppFonts</key>
-	<array/>
+	<array>
+		<string>SF-Pro-Display-Regular.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
