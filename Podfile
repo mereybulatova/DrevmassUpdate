@@ -3,6 +3,9 @@ use_frameworks!
 
 target 'Drevmass' do
   pod 'SnapKit'
+  pod 'Alamofire', '~> 5'
+  pod 'SwiftyJSON'
+  pod 'SDWebImage'
 end
 
 post_install do |installer|

@@ -33,7 +33,9 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>SF-Pro-Display-Regular.ttf</string>
+		<string>SF-Pro-Display-Regular.otf</string>
+		<string>SF-Pro-Display-Bold.otf</string>
+		<string>SF-Pro-Display-Semibold.otf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
