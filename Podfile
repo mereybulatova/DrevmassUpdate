@@ -6,6 +6,7 @@ target 'Drevmass' do
   pod 'Alamofire', '~> 5'
   pod 'SwiftyJSON'
   pod 'SDWebImage'
+  pod 'UIGradient'
 end
 
 post_install do |installer|

@@ -51,6 +51,7 @@ class CourseViewController: UIViewController {
         button.layer.borderColor = UIColor(red: 0.95, green: 0.95, blue: 0.94, alpha: 1.00).cgColor
         button.layer.borderWidth = 2
         button.layer.cornerRadius = 20
+        button.addTarget(self, action: #selector(saveLessonButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -112,6 +113,7 @@ class CourseViewController: UIViewController {
         button.layer.borderColor = UIColor(red: 0.95, green: 0.95, blue: 0.94, alpha: 1.00).cgColor
         button.layer.borderWidth = 2
         button.layer.cornerRadius = 24
+        button.addTarget(self, action: #selector(firstCourseButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -133,7 +135,7 @@ class CourseViewController: UIViewController {
     
     private lazy var firstCourseSubtitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "8 уроков · 134 мин"
+        label.text = "12 уроков · 47 мин"
         label.font = .sfProDisplay(ofSize: 13, weight: .regular)
         label.textColor = UIColor(red: 0.47, green: 0.47, blue: 0.47, alpha: 1.00)
         label.textAlignment = .left
@@ -168,6 +170,7 @@ class CourseViewController: UIViewController {
         button.layer.borderColor = UIColor(red: 0.95, green: 0.95, blue: 0.94, alpha: 1.00).cgColor
         button.layer.borderWidth = 2
         button.layer.cornerRadius = 24
+        button.addTarget(self, action: #selector(secondCourseButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -218,6 +221,8 @@ class CourseViewController: UIViewController {
         return view
     }()
     
+    //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -232,7 +237,7 @@ extension CourseViewController {
     func setupViews() {
         view.backgroundColor = .white
         navigationItem.title = "Курсы"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "saveLessonImageView"), style: .done, target: self, action: #selector(saveNavigationButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "saveLessonImageView"), style: .done, target: self, action: #selector(saveLessonButtonTapped))
         navigationController?.navigationBar.isHidden = true
         scrollView.delegate = self
         
@@ -257,7 +262,7 @@ extension CourseViewController {
             make.right.left.equalToSuperview().inset(16)
             make.top.equalToSuperview().inset(92)
         }
-//        
+       
         secondMainView.snp.makeConstraints { make in
             make.top.equalTo(navBarTitleLabel.snp.bottom).offset(24)
             make.right.left.equalToSuperview()
@@ -319,6 +324,7 @@ extension CourseViewController {
             make.left.equalTo(firstCourseImageView.snp.right).offset(12)
             make.top.equalTo(firstCourseButton.snp.top).inset(11)
             make.right.equalTo(firstCourseButton.snp.right).inset(8)
+            make.height.equalTo(15)
         }
         
         firstCourseTitleLabel.snp.makeConstraints { make in
@@ -326,6 +332,7 @@ extension CourseViewController {
             make.left.equalTo(firstCourseImageView.snp.right).offset(12)
             make.right.equalTo(firstCourseButton.snp.right).inset(8)
             make.bottom.equalTo(firstCourseButton.snp.bottom).inset(48)
+            make.height.equalTo(45)
         }
         
         firstCourseBonusView.snp.makeConstraints { make in
@@ -362,6 +369,7 @@ extension CourseViewController {
             make.left.equalTo(secondCourseImageView.snp.right).offset(12)
             make.top.equalTo(secondCourseButton.snp.top).inset(11)
             make.right.equalTo(secondCourseButton.snp.right).inset(8)
+            make.height.equalTo(15)
         }
         
         secondCourseTitleLabel.snp.makeConstraints { make in
@@ -369,6 +377,7 @@ extension CourseViewController {
             make.left.equalTo(secondCourseImageView.snp.right).offset(12)
             make.right.equalTo(secondCourseButton.snp.right).inset(8)
             make.bottom.equalTo(secondCourseButton.snp.bottom).inset(48)
+            make.height.equalTo(45)
         }
         
         secondCourseBonusView.snp.makeConstraints { make in
@@ -396,17 +405,37 @@ extension CourseViewController {
     //MARK: - Actions
     
     @objc
-    func saveNavigationButtonTapped() {
-        
+    func saveLessonButtonTapped() {
+        let saveLessonVC = SaveLessonViewController()
+        navigationItem.title = ""
+        navigationController?.navigationBar.tintColor = UIColor(red: 0.71, green: 0.64, blue: 0.50, alpha: 1.00)
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.pushViewController(saveLessonVC, animated: true)
     }
     
     @objc
     func bonusButtonTapped() {
         let bonusVC = BonusViewController()
-        
         let bonusViewC = UINavigationController(rootViewController: bonusVC)
-
         self.present(bonusViewC, animated: true, completion: nil)
+    }
+    
+    @objc
+    func firstCourseButtonTapped() {
+        let firstCourseVC = FirstCourseViewController()
+        navigationItem.title = ""
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.pushViewController(firstCourseVC, animated: true)
+    }
+    
+    @objc
+    func secondCourseButtonTapped() {
+        let secondCourseVC = SecondCourseViewController()
+        navigationItem.title = ""
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.pushViewController(secondCourseVC, animated: true)
     }
 }
 
@@ -417,6 +446,7 @@ extension CourseViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y > 0 {
             navigationController?.navigationBar.isHidden = false
+            navigationItem.title = "Курсы"
         } else {
             navigationController?.navigationBar.isHidden = true
         }
