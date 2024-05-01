@@ -9,6 +9,10 @@ import UIKit
 
 class SecondCourseViewController: UIViewController {
     
+//    protocol LessonProtocol {
+//        func productDidSelect(product: Products)
+//    }
+    
     //MARK: - UI Elements
     
     private lazy var scrollView: UIScrollView = {
@@ -351,6 +355,15 @@ extension SecondCourseViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SecondCourseCollectionViewCell", for: indexPath) as! SecondCourseCollectionViewCell
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let secondCourseDetailVC = SecondCourseDetailViewController()
+//        productVC.products = product
+        navigationItem.title = ""
+        navigationController?.show(secondCourseDetailVC, sender: self)
+//        lessonDidSelect(product: products[indexPath.row])
     }
 }
 

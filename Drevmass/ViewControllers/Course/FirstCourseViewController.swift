@@ -353,6 +353,15 @@ extension FirstCourseViewController: UICollectionViewDelegate, UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FirstCourseCollectionViewCell", for: indexPath) as! FirstCourseCollectionViewCell
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let secondCourseDetailVC = SecondCourseDetailViewController()
+        //        productVC.products = product
+        navigationItem.title = ""
+        navigationController?.show(secondCourseDetailVC, sender: self)
+        //        lessonDidSelect(product: products[indexPath.row])
+    }
 }
 
 extension FirstCourseViewController: UIScrollViewDelegate {
